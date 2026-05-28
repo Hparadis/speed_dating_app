@@ -1,0 +1,1 @@
+# Defines API endpoints.(Which controller handles request)
