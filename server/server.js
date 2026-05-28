@@ -41,8 +41,7 @@ const server = http.createServer(app);
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://speed-dating-app-three.vercel.app",
-  "https://speed-dating-lb4rjjjxw-hirwa-paradis-cesars-projects.vercel.app"
+  "https://speed-dating-app-three.vercel.app"
 ];
 
 app.use(
