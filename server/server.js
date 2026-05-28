@@ -39,17 +39,26 @@ const app = express();
 //websockets
 const server = http.createServer(app);
 
-app.use(cors({
-  origin: "https://speed-dating-app-three.vercel.app",
-  credentials: true
-}));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://speed-dating-app-three.vercel.app",
+  "https://speed-dating-lb4rjjjxw-hirwa-paradis-cesars-projects.vercel.app"
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 
 
 
 const io = new Server(server, {
   cors: {
-    origin: "https://speed-dating-app-three.vercel.app",
-    methods: ["GET", "POST"]
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
@@ -61,13 +70,6 @@ app.use(express.json());
 // connect to the database
 connectDB();
 
-// cors
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
 
 // create route prefixing
 app.use("/api/auth", authRoutes);
