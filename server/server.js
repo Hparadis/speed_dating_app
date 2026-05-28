@@ -39,12 +39,21 @@ const app = express();
 //websockets
 const server = http.createServer(app);
 
+app.use(cors({
+  origin: "https://speed-dating-app-three.vercel.app",
+  credentials: true
+}));
+
+
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL,
-    methods: ["GET", "POST"],
-  },
+    origin: "https://speed-dating-app-three.vercel.app",
+    methods: ["GET", "POST"]
+  }
 });
+
+
 
 // our middleware to parse JSON bodies
 app.use(express.json());
@@ -92,13 +101,7 @@ const waitingQueue = [];
 
 io.on("connection", (socket) => {
 
-  const io = new Server(server, {
-    cors: {
-      origin: process.env.CLIENT_URL,
-      methods: ["GET", "POST"],
-    },
-  });
-  
+
   console.log("User connected:", socket.id);
 
   const {findMatch}=require("./matchmaking/services");
