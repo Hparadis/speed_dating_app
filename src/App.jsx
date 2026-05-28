@@ -13,6 +13,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/login" />} />
+      
       <Route
         path="/signup"
         element={<Signup />}

@@ -89,7 +89,16 @@ const onlineUsers = {};
 const activeUsers = new Map(); 
 const waitingQueue = [];
 
+
 io.on("connection", (socket) => {
+
+  const io = new Server(server, {
+    cors: {
+      origin: process.env.CLIENT_URL,
+      methods: ["GET", "POST"],
+    },
+  });
+  
   console.log("User connected:", socket.id);
 
   const {findMatch}=require("./matchmaking/services");
